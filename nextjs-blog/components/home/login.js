@@ -7,7 +7,7 @@ export default function FirstPost() {
     <h1 className="title">
           Welcome to study buddy
         </h1>
-        <
+        
     <Link href="/">
           <a>Back to index</a>
     </Link>
