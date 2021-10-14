@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container"
 import Link from 'next/link'
 //import './login.css'
 //import "./Login.css"
@@ -18,10 +19,12 @@ export default function Login() {
     event.preventDefault();
   }
 
-    return <div className = "Login"><head>
+    return <div class="hero-unit"><head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
       <title>Login</title>
       </head>
     <main>
+      <Container>
     <h1 className="title">
           Welcome to study buddy
         </h1>
@@ -51,6 +54,7 @@ export default function Login() {
     <Link href="/">
           <a>Back to index</a>
     </Link>
+    </Container>
     </main>
     </div>
   }
