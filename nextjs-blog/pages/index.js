@@ -48,6 +48,16 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+
+            <a
+                href="/home/login"
+                className="card"
+            >
+                <h3>Login &rarr;</h3>
+                <p>
+                    First trying to implement the loging page
+                </p>
+            </a>
         </div>
       </main>
 
