@@ -3,4 +3,5 @@
 # Steps to follow after cloning:
 # cd nextjs-blog
 # npm install
+# npm install react-bootstrap bootstrap
 # npm run dev
