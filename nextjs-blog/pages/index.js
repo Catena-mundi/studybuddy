@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -22,7 +21,7 @@ export default function Home() {
           <a href="https://nextjs.org/docs" className="card">
             <h3>Homepage &rarr;</h3>
             <h1 className="title">
-   <a href="/home/homepage">Homepage!</a>
+   <a href="/home/login">Homepage!</a>
 </h1>
           </a>
 
@@ -49,6 +48,16 @@ export default function Home() {
             </p>
           </a>
         </div>
+
+          <a
+              href="/home/calendar"
+              className="card"
+          >
+              <h3>Calendar &rarr;</h3>
+              <p>
+                  click here to get to the calendar component
+              </p>
+          </a>
       </main>
 
       <footer>

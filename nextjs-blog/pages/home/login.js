@@ -1,12 +1,9 @@
-import Head from 'next/head'
 import Link from 'next/link'
-import './login.css'
+import LoginButton from "./loginButton";
+import LogoutButton from "./logoutButton";
 
 export default function FirstPost() {
-    return <div className = "login"><head>
-      <title>Login</title>
-      </head>
-    <main>
+    return <div className = "login">
     <h1 className="title">
           Welcome to study buddy
         </h1>
@@ -14,6 +11,7 @@ export default function FirstPost() {
     <Link href="/">
           <a>Back to index</a>
     </Link>
-    </main>
+        <LoginButton/>
+        <LogoutButton/>
     </div>
   }
