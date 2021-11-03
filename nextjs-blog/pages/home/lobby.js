@@ -6,14 +6,58 @@ import Container from "react-bootstrap/Container"
 import Link from 'next/link'
 import logo from '../imgs/2.png'
 import Lobby_row from '../components/Lobby_row'
+import Create_event from '../components/Create_event'
+
 //import './login.css'
 //import "./Login.css"
 
+//hacer dummy_data un state
+
 export default function Lobby() {
+
+  const [title, setTitle] = useState("");
+  const [time, setTime] = useState("");
+  const [location, setLocation] = useState("");
+  const [childData, setChildData] = useState("");
+  const [, updateState] = React.useState();
+ const forceUpdate = React.useCallback(() => updateState({}), []);
+  let dummy_data = [
+    {
+      "title": "Korean study group",
+      "location": "Suwon library",
+      "time": "12:10"
+    },
+    {
+      "title": "Free hoodies!",
+      "location": "Seoul campus",
+      "time": "13:30"
+    },
+    {
+      "title": "SKKU AI conference",
+      "location": "WebEx",
+      "time": "16:00"
+    }
+  ];
+  var namesList = dummy_data.map(function(event, index){
+    return <Lobby_row dataFromParent = {event}></Lobby_row>;
+  })
+  const updateMyData= (datos) => {
+    dummy_data.push({
+      "title": "SKKU AI conference",
+      "location": "WebEx",
+      "time": "16:00"
+    })
+    namesList = dummy_data.map(function(event, index){
+      return <Lobby_row dataFromParent = {event}></Lobby_row>;
+    })
+    console.log(dummy_data)
+    forceUpdate
+  }
   
     return <div class="hero-unit"><head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+
       <title>Lobby</title>
       </head>
     <main>
@@ -26,10 +70,10 @@ export default function Lobby() {
     </nav>
     <br></br>
   <div class="row">
-    <div class="col-3">
-        <div class = "row">Study groups</div>
-        <div class = "row">Conferences</div>
-        <div class = "row">International students</div>
+    <div class="col-3 bg-light">
+        <div class = "row m-3">Study groups</div>
+        <div class = "row m-3">Conferences</div>
+        <div class = "row m-3">International students</div>
     </div>
     <div class="col">
         <div class = "row">
@@ -47,21 +91,13 @@ export default function Lobby() {
         </div>
         <br></br>
         <Container>
-            <Lobby_row></Lobby_row>
-            <br></br>
-            <Lobby_row></Lobby_row>
-            <br></br>
-            <Lobby_row></Lobby_row>
-            <br></br>
-            <Lobby_row></Lobby_row>
-            <br></br>
-            <Lobby_row></Lobby_row>
-            <br></br>
-            <Lobby_row></Lobby_row>
-            <br></br>
+            <div class="col">{ dummy_data.map(function(event, index){
+      return <Lobby_row dataFromParent = {event}></Lobby_row>;
+    }) }</div>
         </Container>
     </div>
   </div>
+  <Create_event passChildData={setChildData} updateParent={updateMyData}></Create_event>
 </div>
         
     <Link href="/">
@@ -69,5 +105,7 @@ export default function Lobby() {
     </Link>
     </Container>
     </main>
+    
     </div>
+    
   }

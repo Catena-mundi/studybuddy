@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
 function Lobby_row(props) {
     
-    return <div class = "row">
-        <div class = "col">12:57</div>
-        <div class = "col">Example meeting</div>
-        <div class = "col">Location</div>
+    return <div class = "row mb-3">
+        <div class = "col">{props.dataFromParent.time}</div>
+        <div class = "col">{props.dataFromParent.title}</div>
+        <div class = "col">{props.dataFromParent.location}</div>
         <div class = "col">
             <Button>Join now</Button>
         </div>
