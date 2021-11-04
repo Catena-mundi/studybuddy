@@ -19,9 +19,7 @@ export default function Lobby() {
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
   const [childData, setChildData] = useState("");
-  const [, updateState] = React.useState();
- const forceUpdate = React.useCallback(() => updateState({}), []);
-  let dummy_data = [
+  const [data, setData] = useState([
     {
       "title": "Korean study group",
       "location": "Suwon library",
@@ -37,24 +35,20 @@ export default function Lobby() {
       "location": "WebEx",
       "time": "16:00"
     }
-  ];
-  var namesList = dummy_data.map(function(event, index){
-    return <Lobby_row dataFromParent = {event}></Lobby_row>;
-  })
+  ]);
   const updateMyData= (datos) => {
-    dummy_data.push({
-      "title": "SKKU AI conference",
-      "location": "WebEx",
-      "time": "16:00"
+    const aux = JSON.parse(JSON.stringify(data))
+    aux.push({
+      "title": datos.title,
+      "location": datos.location,
+      "time": datos.time
     })
-    namesList = dummy_data.map(function(event, index){
-      return <Lobby_row dataFromParent = {event}></Lobby_row>;
-    })
-    console.log(dummy_data)
-    forceUpdate
+    setData(aux)
+    console.log("nuevos datos")
+    console.log(data)
   }
   
-    return <div class="hero-unit"><head>
+    return <div className="hero-unit"><head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
 
@@ -62,42 +56,43 @@ export default function Lobby() {
       </head>
     <main>
       <Container>
-    <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">Study buddy
-        <a class="navbar-brand" href="#">
+    <div className="container">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">Study buddy
+        <a className="navbar-brand" href="#">
         <img src={logo} width="30" height="30" alt=""/>
         </a>
     </nav>
     <br></br>
-  <div class="row">
-    <div class="col-3 bg-light">
-        <div class = "row m-3">Study groups</div>
-        <div class = "row m-3">Conferences</div>
-        <div class = "row m-3">International students</div>
+  <div className="row">
+    <div className="col-3 bg-light">
+    <Create_event passChildData={setChildData} updateParent={updateMyData}></Create_event>
+        <div className = "row m-3">Study groups</div>
+        <div className = "row m-3">Conferences</div>
+        <div className = "row m-3">International students</div>
     </div>
-    <div class="col">
-        <div class = "row">
-            <div class = "col-5">
-                <div class="input-group rounded">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                    <i class="fas fa-search"></i>
+    <div className="col">
+        <div className = "row">
+            <div className = "col-5">
+                <div className="input-group rounded">
+                    <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <span className="input-group-text border-0" id="search-addon">
+                    <i className="fas fa-search"></i>
                     </span>
                 </div>
             </div>
-            <div class = "col">
+            <div className = "col">
                 <Button>New event</Button>
             </div>
         </div>
         <br></br>
         <Container>
-            <div class="col">{ dummy_data.map(function(event, index){
-      return <Lobby_row dataFromParent = {event}></Lobby_row>;
-    }) }</div>
+            <div className="col">{ data.map(function(event, index){
+              return <Lobby_row key = {index} dataFromParent = {event}></Lobby_row>;
+            }) }</div>
         </Container>
     </div>
   </div>
-  <Create_event passChildData={setChildData} updateParent={updateMyData}></Create_event>
+  
 </div>
         
     <Link href="/">

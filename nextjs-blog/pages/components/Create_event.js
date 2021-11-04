@@ -8,10 +8,11 @@ function Create_event(props) {
     const [time, setTime] = useState("");
     const [location, setLocation] = useState("");
     function handleSubmit(event) {
+        const objeto = {title,time,location}
         props.passChildData(event.title);
         event.preventDefault();
-        props.updateParent(event.title)
-        //print("holi")
+        props.updateParent(objeto)
+        console.log(objeto)
       }
     
     //title, time when it starts, how many people we need, user
@@ -19,10 +20,8 @@ function Create_event(props) {
         <Card style={{ width: '18rem' }}>
             <Card.Body>
                 <Card.Title>New event</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                    Connect with other students!
                 </Card.Text>
                 <Form onSubmit={handleSubmit} class = "mb-3">
         <Form.Group size="lg" controlId="title">
