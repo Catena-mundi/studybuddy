@@ -10,7 +10,7 @@ import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import './login.css'
 //import "./Login.css"
-
+// client secret
 
 import LoginButton from "./home/loginButton";
 import LogoutButton from "./home/logoutButton";
@@ -81,7 +81,7 @@ export default function Login() {
         </Button>
       </Form>
       <GoogleLogin
-    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    clientId="1023237436999-c8vqvl58fregldvfm0m1icosgsld0hth.apps.googleusercontent.com"
     buttonText="Login"
     onSuccess={responseGoogle}
     onFailure={responseGoogle}
