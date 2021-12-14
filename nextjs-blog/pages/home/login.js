@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import Head from 'next/head'
 import Form from "react-bootstrap/Form";
@@ -32,6 +33,15 @@ export default function Login() {
     <main>
       <Container>
     <h1 className="title mt-3">
+=======
+import Link from 'next/link'
+import LoginButton from "./loginButton";
+import LogoutButton from "./logoutButton";
+
+export default function FirstPost() {
+    return <div className = "login">
+    <h1 className="title">
+>>>>>>> calendar
           Welcome to study buddy
     </h1>
     <div class = "col"></div>
@@ -73,7 +83,12 @@ export default function Login() {
     <Link href="/">
           <a>Back to index</a>
     </Link>
+<<<<<<< HEAD
     </Container>
     </main>
+=======
+        <LoginButton/>
+        <LogoutButton/>
+>>>>>>> calendar
     </div>
   }
