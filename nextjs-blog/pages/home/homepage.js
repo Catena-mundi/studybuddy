@@ -9,6 +9,47 @@ import Card from "react-bootstrap/Card";
 /*
 * have to make a function where it makes all the cards corresponding to all the services that we have*/
 
+function HomeCard({ href, title, text, img }) {
+    const link = '/home/'+ href;
+
+    return (
+        <Card onClick={event =>  window.location.href = link} style={{ cursor: "pointer" }}>
+            <Card.Img variant="top" src={img} />
+            <Card.Body>
+                <Card.Title> {title} </Card.Title>
+                <Card.Text> {text} </Card.Text>
+            </Card.Body>
+        </Card>
+    );
+}
+
+const homeCards = [
+    {
+        title: 'Create a new event',
+        text: 'Start an event right now or schedule one for later',
+        href: 'create',
+        img: "/imgs/page.png"
+    },
+    {
+        title: 'Lobby',
+        text: 'Find current or future events according to your interests',
+        href: 'lobby',
+        img: "/imgs/event.png"
+    },
+    {
+        title: 'My calendar',
+        text: 'See your events or change your availability.',
+        href: 'calendar',
+        img: "/imgs/calendar.png"
+    },
+    {
+        title: 'Lobby',
+        text: 'Find current or future events according to your interests',
+        href: 'lobby',
+        img: "/imgs/event.png"
+    },
+]
+
 export default function FirstPost() {
     return <div><Head><title>Homepage</title></Head>
         <Navbar bg="primary" variant="dark">
@@ -25,53 +66,16 @@ export default function FirstPost() {
             <br></br>
             <Container>
             <Row>
-                <Col class="col-4">
-                    <Card onClick={event =>  window.location.href='/home/create'} style={{ cursor: "pointer" }}>
-                        <Card.Img class = "mt-5" variant="top" src="/imgs/page.png" />
-                        <Card.Body>
-                            <Card.Title>Create a new event</Card.Title>
-                            <Card.Text>
-                                Start an event right now or schedule one for later
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col class="col-4">
-                    <Card onClick={event =>  window.location.href='/home/lobby'} style={{ cursor: "pointer" }}>
-                        <img class = "mt-5" src="/imgs/event.png" />
-                        <Card.Body>
-                            <Card.Title>Lobby</Card.Title>
-                            <Card.Text>
-                                Find current or future events according to your interests
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-            <br></br>
-            <Row>
-                <Col class="col-4">
-                    <Card onClick={event =>  window.location.href='/home/calendar'} style={{ cursor: "pointer" }}>
-                        <Card.Img class = "mt-5" variant="top" src="/imgs/calendar.png" />
-                        <Card.Body>
-                            <Card.Title>My calendar</Card.Title>
-                            <Card.Text>
-                                See your events or change your availability.
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col class="col-4">
-                    <Card>
-                        <Card.Img class = "mt-5" variant="top" src="/imgs/event.png" />
-                        <Card.Body>
-                            <Card.Title>Lobby</Card.Title>
-                            <Card.Text>
-                                Find current or future events according to your interests
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
+                {homeCards.map((card, i) => (
+                    <Col md={6} key={i}>
+                         <HomeCard
+                            title={card.title}
+                            text={card.text}
+                            href={card.href}
+                            img={card.img}
+                         />
+                    </Col>
+                ))}
             </Row>
             </Container>
         </main>
