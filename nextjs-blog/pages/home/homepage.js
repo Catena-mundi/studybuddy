@@ -11,42 +11,44 @@ import Card from "react-bootstrap/Card";
 
 function HomeCard({ href, title, text, img }) {
     const link = '/home/'+ href;
+    const imgURL = '/imgs/' + img
 
     return (
-        <Card onClick={event =>  window.location.href = link} style={{ cursor: "pointer" }}>
-            <Card.Img variant="top" src={img} />
-            <Card.Body>
+        <Card className="m-3" onClick={event =>  window.location.href = link} style={{ cursor: "pointer" }}>
+            <Card.Header style={{ height: '5rem' }}>
                 <Card.Title> {title} </Card.Title>
-                <Card.Text> {text} </Card.Text>
-            </Card.Body>
+                <Card.Subtitle className="mb-2 text-muted">{text}</Card.Subtitle>
+            </Card.Header>
+            <Card.Img className="w-50 mx-auto d-block m-3" variant="top" src={imgURL} />
         </Card>
     );
 }
+
 
 const homeCards = [
     {
         title: 'Create a new event',
         text: 'Start an event right now or schedule one for later',
         href: 'create',
-        img: "/imgs/page.png"
+        img: "page.png"
     },
     {
         title: 'Lobby',
         text: 'Find current or future events according to your interests',
         href: 'lobby',
-        img: "/imgs/event.png"
+        img: "event.png"
     },
     {
         title: 'My calendar',
         text: 'See your events or change your availability.',
         href: 'calendar',
-        img: "/imgs/calendar.png"
+        img: "calendar.png"
     },
     {
         title: 'Lobby',
         text: 'Find current or future events according to your interests',
         href: 'lobby',
-        img: "/imgs/event.png"
+        img: "event.png"
     },
 ]
 

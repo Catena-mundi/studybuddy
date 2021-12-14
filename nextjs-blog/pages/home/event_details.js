@@ -66,17 +66,13 @@ export default function Create() {
                 </Nav>
             </Container>
         </Navbar>
-                <Container>
-                    <div class="card bg-dark text-white">
+                    
+                    <div class="card bg-dark text-dark">
                         <img class="card-img" src="/imgs/skku.jpeg" alt="Card image"/>
                         <div class="card-img-overlay">
+                            <Container>
+
                             <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text">Last updated 3 mins ago</p>
-                        </div>
-                    </div>
-                </Container>
-                <Container>
                     <Row>
                         <Col>
                             <Card>
@@ -99,6 +95,10 @@ export default function Create() {
                         </Col>
                     </Row>
                 </Container>
+                            
+                        </div>
+                    </div>
+                
 
             </main>
     </div>
