@@ -8,6 +8,16 @@ import GoogleLogin from 'react-google-login';
 //import './login.css'
 //import "./Login.css"
 
+/*
+import Link from 'next/link'
+import LoginButton from "./loginButton";
+import LogoutButton from "./logoutButton";
+
+export default function FirstPost() {
+    return <div className = "login">
+    <h1 className="title">
+*/
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -75,5 +85,12 @@ export default function Login() {
     </Link>
     </Container>
     </main>
+    
+
     </div>
+    /*
+    <LoginButton/>
+        <LogoutButton/>
+ 
+    */
   }
