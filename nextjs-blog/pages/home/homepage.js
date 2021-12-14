@@ -25,9 +25,9 @@ export default function FirstPost() {
             <br></br>
             <Container>
             <Row>
-                <Col>
+                <Col class="col-4">
                     <Card onClick={event =>  window.location.href='/home/create'} style={{ cursor: "pointer" }}>
-                        <Card.Img variant="top" src="holder.js/100px160" />
+                        <Card.Img class = "mt-5" variant="top" src="/imgs/page.png" />
                         <Card.Body>
                             <Card.Title>Create a new event</Card.Title>
                             <Card.Text>
@@ -36,9 +36,9 @@ export default function FirstPost() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col>
+                <Col class="col-4">
                     <Card onClick={event =>  window.location.href='/home/lobby'} style={{ cursor: "pointer" }}>
-                        <img src="event.png" />
+                        <img class = "mt-5" src="/imgs/event.png" />
                         <Card.Body>
                             <Card.Title>Lobby</Card.Title>
                             <Card.Text>
@@ -50,9 +50,9 @@ export default function FirstPost() {
             </Row>
             <br></br>
             <Row>
-                <Col>
+                <Col class="col-4">
                     <Card onClick={event =>  window.location.href='/home/calendar'} style={{ cursor: "pointer" }}>
-                        <Card.Img variant="top" src="holder.js/100px160" />
+                        <Card.Img class = "mt-5" variant="top" src="/imgs/calendar.png" />
                         <Card.Body>
                             <Card.Title>My calendar</Card.Title>
                             <Card.Text>
@@ -61,9 +61,9 @@ export default function FirstPost() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col>
+                <Col class="col-4">
                     <Card>
-                        <Card.Img variant="top" src="holder.js/100px160" />
+                        <Card.Img class = "mt-5" variant="top" src="/imgs/event.png" />
                         <Card.Body>
                             <Card.Title>Lobby</Card.Title>
                             <Card.Text>
