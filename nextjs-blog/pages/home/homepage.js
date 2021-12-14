@@ -22,25 +22,58 @@ export default function FirstPost() {
         </Navbar>
         <main>
             <h1 className="title">Homepage</h1>
-            <Link href="/">
-                  <a>Back to index</a>
-            </Link>
-            <Row xs={1} md={2} className="g-4">
-                {Array.from({ length: 4 }).map((_, idx) => (
-                    <Col>
-                        <Card>
-                            <Card.Img variant="top" src="holder.js/100px160" />
-                            <Card.Body>
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
+            <br></br>
+            <Container>
+            <Row>
+                <Col>
+                    <Card onClick={event =>  window.location.href='/home/lobby'} style={{ cursor: "pointer" }}>
+                        <Card.Img variant="top" src="holder.js/100px160" />
+                        <Card.Body>
+                            <Card.Title>Create a new event</Card.Title>
+                            <Card.Text>
+                                Start an event right now or schedule one for later
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card onClick={event =>  window.location.href='/home/lobby'} style={{ cursor: "pointer" }}>
+                        <img src="event.png" />
+                        <Card.Body>
+                            <Card.Title>Lobby</Card.Title>
+                            <Card.Text>
+                                Find current or future events according to your interests
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
             </Row>
+            <br></br>
+            <Row>
+                <Col>
+                    <Card onClick={event =>  window.location.href='/home/calendar'} style={{ cursor: "pointer" }}>
+                        <Card.Img variant="top" src="holder.js/100px160" />
+                        <Card.Body>
+                            <Card.Title>My calendar</Card.Title>
+                            <Card.Text>
+                                See your events or change your availability.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Img variant="top" src="holder.js/100px160" />
+                        <Card.Body>
+                            <Card.Title>Lobby</Card.Title>
+                            <Card.Text>
+                                Find current or future events according to your interests
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+            </Container>
         </main>
     <style jsx>{`
     main {
