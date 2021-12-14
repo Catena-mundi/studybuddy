@@ -45,7 +45,8 @@ export default function Lobby() {
     aux.push({
       "title": datos.title,
       "location": datos.location,
-      "time": datos.time
+      "time": datos.time,
+      "category": datos.category
     })
     setData(aux)
     console.log("nuevos datos")
@@ -88,6 +89,7 @@ export default function Lobby() {
                     </span>
                 </div>
             </div>
+            <p>hola</p>
             <div className = "col">
                 <Button>New event</Button>
             </div>

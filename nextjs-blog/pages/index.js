@@ -11,11 +11,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import './login.css'
 //import "./Login.css"
 
-/*
-import Link from 'next/link'
-import LoginButton from "./loginButton";
-import LogoutButton from "./logoutButton";
 
+import LoginButton from "./home/loginButton";
+import LogoutButton from "./home/logoutButton";
+/*
 export default function FirstPost() {
     return <div className = "login">
     <h1 className="title">
@@ -97,13 +96,10 @@ export default function Login() {
           <a>Back to index</a>
     </Link>
     </Container>
+    <LoginButton/>
+    <LogoutButton/>
     </main>
     
 
     </div>
-    /*
-    <LoginButton/>
-        <LogoutButton/>
- 
-    */
   }
