@@ -26,7 +26,7 @@ export default function FirstPost() {
             <Container>
             <Row>
                 <Col>
-                    <Card onClick={event =>  window.location.href='/home/lobby'} style={{ cursor: "pointer" }}>
+                    <Card onClick={event =>  window.location.href='/home/create'} style={{ cursor: "pointer" }}>
                         <Card.Img variant="top" src="holder.js/100px160" />
                         <Card.Body>
                             <Card.Title>Create a new event</Card.Title>
