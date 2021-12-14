@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Link from 'next/link'
-import logo from '../imgs/2.png'
 import Lobby_row from '../components/Lobby_row'
 import Create_event from '../components/Create_event_big'
 import Navbar from 'react-bootstrap/Navbar'
@@ -67,10 +66,38 @@ export default function Create() {
                 </Nav>
             </Container>
         </Navbar>
-                <Container class="mt-5">
-                    <Card>
-                        
-                    </Card>
+                <Container>
+                    <div class="card bg-dark text-white">
+                        <img class="card-img" src="/imgs/skku.jpeg" alt="Card image"/>
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text">Last updated 3 mins ago</p>
+                        </div>
+                    </div>
+                </Container>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Title>Location</Card.Title>
+                                    <Card.Text>
+                                        Event description
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Text>
+                                        Chat room
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
 
             </main>
