@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import Head from 'next/head'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container"
 import Link from 'next/link'
 import logo from '../imgs/2.png'
 import Lobby_row from '../components/Lobby_row'
 import Create_event from '../components/Create_event'
+import Navbar from 'react-bootstrap/Navbar'
+import Container from "react-bootstrap/Container";
+import {Col, Nav, Row} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from "react-bootstrap/Card";
 
 //import './login.css'
 //import "./Login.css"
@@ -18,22 +22,26 @@ export default function Lobby() {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
+  const [category, setCategory] = useState("Any");
   const [childData, setChildData] = useState("");
   const [data, setData] = useState([
     {
       "title": "Korean study group",
       "location": "Suwon library",
-      "time": "12:10"
+      "time": "12:10",
+      "category": "International students"
     },
     {
       "title": "Free hoodies!",
       "location": "Seoul campus",
-      "time": "13:30"
+      "time": "13:30",
+      "category": "Study Groups"
     },
     {
       "title": "SKKU AI conference",
       "location": "WebEx",
-      "time": "16:00"
+      "time": "16:00",
+      "category": "Study Groups"
     }
   ]);
   const updateMyData= (datos) => {
@@ -41,11 +49,19 @@ export default function Lobby() {
     aux.push({
       "title": datos.title,
       "location": datos.location,
-      "time": datos.time
+      "time": datos.time,
+      "category": datos.category
     })
     setData(aux)
     console.log("nuevos datos")
     console.log(data)
+  }
+  const filterData = (d, c) => {
+    if (category == "Any"){
+      return d;
+    }else{
+      return d.filter(el => el.category.search(c) !== -1)
+    }
   }
   
     return <div className="hero-unit"><head>
@@ -55,20 +71,31 @@ export default function Lobby() {
       <title>Lobby</title>
       </head>
     <main>
+    <Navbar bg="primary" variant="dark">
+            <Container>
+                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
+                <Nav className="me-auto">
+                    <Nav.Link href="/home/homepage">Home</Nav.Link>
+                    <Nav.Link href="/home/lobby">Lobby</Nav.Link>
+                </Nav>
+            </Container>
+        </Navbar>
       <Container>
     <div className="container">
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">Study buddy
-        <a className="navbar-brand" href="#">
-        <img src={logo} width="30" height="30" alt=""/>
-        </a>
-    </nav>
     <br></br>
   <div className="row">
     <div className="col-3 bg-light">
     <Create_event passChildData={setChildData} updateParent={updateMyData}></Create_event>
-        <div className = "row m-3">Study groups</div>
-        <div className = "row m-3">Conferences</div>
-        <div className = "row m-3">International students</div>
+    <br></br>
+    <h4>Filter events by category</h4>
+    <select class = "form-select" value={category} onChange = {(e) => setCategory(e.target.value)}>
+      <option value="Any" selected>Select One</option>
+      <option value="Study Groups">Study Groups</option>
+      <option value="Conferences">Conferences</option>
+      <option value="Outdoors activities">Outdoors activities</option>
+      <option value="International students">International students</option>
+    </select>
+
     </div>
     <div className="col">
         <div className = "row">
@@ -86,7 +113,7 @@ export default function Lobby() {
         </div>
         <br></br>
         <Container>
-            <div className="col">{ data.map(function(event, index){
+            <div className="col">{ filterData(data, category).map(function(event, index){
               return <Lobby_row key = {index} dataFromParent = {event}></Lobby_row>;
             }) }</div>
         </Container>

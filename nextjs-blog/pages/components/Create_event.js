@@ -7,6 +7,7 @@ function Create_event(props) {
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
     const [location, setLocation] = useState("");
+    const [category, setCategory] = useState("");
     function handleSubmit(event) {
         const objeto = {title,time,location}
         props.passChildData(event.title);
@@ -41,6 +42,17 @@ function Create_event(props) {
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
+        </Form.Group>
+        <Form.Group size = "lg" controlId = "category">
+          <Form.Label>Category</Form.Label>
+          
+          <select class = "form-select" value={category} onChange = {(e) => setCategory(e.target.value)}>
+            <option value="Any" selected>Select One</option>
+            <option value="Study Groups">Study Groups</option>
+            <option value="Conferences">Conferences</option>
+            <option value="Outdoors activities">Outdoors activities</option>
+            <option value="International students">International students</option>
+          </select>
         </Form.Group>
 
         <Form.Group size="lg" controlId="location">
