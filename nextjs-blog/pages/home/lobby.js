@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import Head from 'next/head'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container"
 import Link from 'next/link'
 import logo from '../imgs/2.png'
 import Lobby_row from '../components/Lobby_row'
 import Create_event from '../components/Create_event'
+import Navbar from 'react-bootstrap/Navbar'
+import Container from "react-bootstrap/Container";
+import {Col, Nav, Row} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from "react-bootstrap/Card";
 
 //import './login.css'
 //import "./Login.css"
@@ -55,13 +59,17 @@ export default function Lobby() {
       <title>Lobby</title>
       </head>
     <main>
+    <Navbar bg="primary" variant="dark">
+            <Container>
+                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
+                <Nav className="me-auto">
+                    <Nav.Link href="/home/homepage">Home</Nav.Link>
+                    <Nav.Link href="/home/lobby">Lobby</Nav.Link>
+                </Nav>
+            </Container>
+        </Navbar>
       <Container>
     <div className="container">
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">Study buddy
-        <a className="navbar-brand" href="#">
-        <img src={logo} width="30" height="30" alt=""/>
-        </a>
-    </nav>
     <br></br>
   <div className="row">
     <div className="col-3 bg-light">

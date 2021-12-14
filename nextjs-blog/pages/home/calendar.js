@@ -7,6 +7,15 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 import "react-datepicker/dist/react-datepicker.css"
 import React, { useState } from "react"
 import DatePicker from "react-datepicker"
+import Head from 'next/head'
+import Link from 'next/link'
+import Navbar from 'react-bootstrap/Navbar'
+import Container from "react-bootstrap/Container";
+import {Col, Nav, Row} from "react-bootstrap";
+
+import Button from "react-bootstrap/Button";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from "react-bootstrap/Card";
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -54,7 +63,18 @@ export default function FirstPost() {
     }
 
     return <div>
-        <h1>Calendar</h1>
+        <Navbar bg="primary" variant="dark">
+            <Container>
+                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
+                <Nav className="me-auto">
+                    <Nav.Link href="/home/homepage">Home</Nav.Link>
+                    <Nav.Link href="/home/lobby">Lobby</Nav.Link>
+                </Nav>
+            </Container>
+        </Navbar>
+        <Container>
+        <h1 class = "mt-4">Calendar</h1>
+        <Card class="m4">
         <h2>Add New Event</h2>
         <div>
             <input type="text" placeholder="Add Title" style={{width: "20%", marginRight: "10px"}}
@@ -64,13 +84,16 @@ export default function FirstPost() {
                         selected={newEvent.start} onChange={(start) => setNewEvent({...newEvent, start})} />
             <DatePicker placeholderText="End Date"
                         selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent, end})} />
-                        <button style={{marginTop: "10px"}} onClick={handleAddEvent}> Add Event</button>
+                        <Button style={{marginTop: "10px"}} onClick={handleAddEvent}> Add Event</Button>
         </div>
+        </Card>
 
         <Calendar localizer={localizer}
                   events={allEvents}
                   startAccessor="start"
                   endAccessor="end"
                   style={{ height: 500, margin: "50px" }} />
+         </Container>
     </div>
+    
 }
