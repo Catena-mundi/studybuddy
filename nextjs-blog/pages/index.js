@@ -34,6 +34,7 @@ export default function Login() {
 
   const responseGoogle = (response) => {
     console.log(response);
+    window.location.href = "http://localhost:3000/home/homepage";
   }
   
     return <div class="hero-unit"><head>
@@ -96,7 +97,6 @@ export default function Login() {
           <a>Back to index</a>
     </Link>
     </Container>
-    <LoginButton/>
     <LogoutButton/>
     </main>
     
