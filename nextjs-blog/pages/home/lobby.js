@@ -22,22 +22,26 @@ export default function Lobby() {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
+  const [category, setCategory] = useState("Any");
   const [childData, setChildData] = useState("");
   const [data, setData] = useState([
     {
       "title": "Korean study group",
       "location": "Suwon library",
-      "time": "12:10"
+      "time": "12:10",
+      "category": "International students"
     },
     {
       "title": "Free hoodies!",
       "location": "Seoul campus",
-      "time": "13:30"
+      "time": "13:30",
+      "category": "Study Groups"
     },
     {
       "title": "SKKU AI conference",
       "location": "WebEx",
-      "time": "16:00"
+      "time": "16:00",
+      "category": "Study Groups"
     }
   ]);
   const updateMyData= (datos) => {
@@ -51,6 +55,13 @@ export default function Lobby() {
     setData(aux)
     console.log("nuevos datos")
     console.log(data)
+  }
+  const filterData = (d, c) => {
+    if (category == "Any"){
+      return d;
+    }else{
+      return d.filter(el => el.category.search(c) !== -1)
+    }
   }
   
     return <div className="hero-unit"><head>
@@ -75,9 +86,16 @@ export default function Lobby() {
   <div className="row">
     <div className="col-3 bg-light">
     <Create_event passChildData={setChildData} updateParent={updateMyData}></Create_event>
-        <div className = "row m-3">Study groups</div>
-        <div className = "row m-3">Conferences</div>
-        <div className = "row m-3">International students</div>
+    <br></br>
+    <h4>Filter events by category</h4>
+    <select class = "form-select" value={category} onChange = {(e) => setCategory(e.target.value)}>
+      <option value="Any" selected>Select One</option>
+      <option value="Study Groups">Study Groups</option>
+      <option value="Conferences">Conferences</option>
+      <option value="Outdoors activities">Outdoors activities</option>
+      <option value="International students">International students</option>
+    </select>
+
     </div>
     <div className="col">
         <div className = "row">
@@ -89,14 +107,13 @@ export default function Lobby() {
                     </span>
                 </div>
             </div>
-            <p>hola</p>
             <div className = "col">
                 <Button>New event</Button>
             </div>
         </div>
         <br></br>
         <Container>
-            <div className="col">{ data.map(function(event, index){
+            <div className="col">{ filterData(data, category).map(function(event, index){
               return <Lobby_row key = {index} dataFromParent = {event}></Lobby_row>;
             }) }</div>
         </Container>

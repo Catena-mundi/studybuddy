@@ -47,11 +47,11 @@ function Create_event(props) {
           <Form.Label>Category</Form.Label>
           
           <select class = "form-select" value={category} onChange = {(e) => setCategory(e.target.value)}>
-            <option value="0" selected>Select One</option>
-            <option value="1">Study Groups</option>
-            <option value="2">Conferences</option>
-            <option value="3">Outdoors activities</option>
-            <option value="4">International students</option>
+            <option value="Any" selected>Select One</option>
+            <option value="Study Groups">Study Groups</option>
+            <option value="Conferences">Conferences</option>
+            <option value="Outdoors activities">Outdoors activities</option>
+            <option value="International students">International students</option>
           </select>
         </Form.Group>
 
