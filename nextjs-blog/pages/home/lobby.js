@@ -20,25 +20,25 @@ export default function Lobby() {
 
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("Any");
   const [category, setCategory] = useState("Any");
   const [childData, setChildData] = useState("");
   const [data, setData] = useState([
     {
       "title": "Korean study group",
-      "location": "Suwon library",
+      "location": "Suwon Campus",
       "time": "12:10",
       "category": "International students"
     },
     {
       "title": "Free hoodies!",
-      "location": "Seoul campus",
+      "location": "Seoul Campus",
       "time": "13:30",
       "category": "Study Groups"
     },
     {
       "title": "SKKU AI conference",
-      "location": "WebEx",
+      "location": "Online",
       "time": "16:00",
       "category": "Study Groups"
     }
@@ -55,11 +55,18 @@ export default function Lobby() {
     console.log("nuevos datos")
     console.log(data)
   }
-  const filterData = (d, c) => {
+  const filterData = (d, c, l) => {
     if (category == "Any"){
+      return filterLocation(d, l);
+    }else{
+      return filterLocation(d, l).filter(el => el.category.search(c) !== -1)
+    }
+  }
+  const filterLocation = (d, l) => {
+    if (l == "Any"){
       return d;
     }else{
-      return d.filter(el => el.category.search(c) !== -1)
+      return d.filter(el => el.location.search(l) !== -1)
     }
   }
   
@@ -88,11 +95,20 @@ export default function Lobby() {
     <br></br>
     <h4>Filter events by category</h4>
     <select class = "form-select" value={category} onChange = {(e) => setCategory(e.target.value)}>
-      <option value="Any" selected>Select One</option>
+      <option value="Any" selected>Any</option>
       <option value="Study Groups">Study Groups</option>
       <option value="Conferences">Conferences</option>
       <option value="Outdoors activities">Outdoors activities</option>
       <option value="International students">International students</option>
+    </select>
+
+    <h4>Filter events by location</h4>
+    <select class = "form-select" value={location} onChange = {(e) => setLocation(e.target.value)}>
+      <option value="Any" selected>Any</option>
+      <option value="Online">Online</option>
+      <option value="Suwon Campus">Suwon Campus</option>
+      <option value="Seoul Campus">Seoul Campus</option>
+      <option value="Outside of campus">Outside of campus</option>
     </select>
 
     </div>
@@ -112,7 +128,7 @@ export default function Lobby() {
         </div>
         <br></br>
         <Container>
-            <div className="col">{ filterData(data, category).map(function(event, index){
+            <div className="col">{ filterData(data, category, location).map(function(event, index){
               return <Lobby_row key = {index} dataFromParent = {event}></Lobby_row>;
             }) }</div>
         </Container>

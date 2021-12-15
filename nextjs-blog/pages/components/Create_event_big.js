@@ -52,6 +52,15 @@ function Create_event(props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          </Form.Group>
+        <Form.Group size="lg" controlId="description">
+          <Form.Label>Event description</Form.Label>
+          <Form.Control
+            autoFocus
+            type="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </Form.Group>
           <DatePicker placeholderText="Start Date" style={{marginRight: "10px"}}
                           selected={newEvent.start} onChange={(start) => setNewEvent({...newEvent, start})} />
