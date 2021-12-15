@@ -9,7 +9,7 @@ function Create_event(props) {
     const [location, setLocation] = useState("");
     const [category, setCategory] = useState("");
     function handleSubmit(event) {
-        const objeto = {title,time,location}
+        const objeto = { title, time, location, category }
         props.passChildData(event.title);
         event.preventDefault();
         props.updateParent(objeto)

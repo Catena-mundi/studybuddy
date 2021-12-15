@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -16,6 +16,29 @@ import Card from "react-bootstrap/Card";
 
 //hacer dummy_data un state
 
+function get(url) {
+  const requestOptions = {
+    method: 'GET',
+  };
+  return fetch(url, requestOptions)
+  .then(data => {
+    return data.text();
+  });
+}
+
+function post(url, body) {
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(body)
+  };
+  return fetch(url, requestOptions)
+  .then(data => {
+    return data.text();
+  });;
+}
+
 export default function Lobby() {
 
   const [title, setTitle] = useState("");
@@ -23,35 +46,21 @@ export default function Lobby() {
   const [location, setLocation] = useState("");
   const [category, setCategory] = useState("Any");
   const [childData, setChildData] = useState("");
-  const [data, setData] = useState([
-    {
-      "title": "Korean study group",
-      "location": "Suwon library",
-      "time": "12:10",
-      "category": "International students"
-    },
-    {
-      "title": "Free hoodies!",
-      "location": "Seoul campus",
-      "time": "13:30",
-      "category": "Study Groups"
-    },
-    {
-      "title": "SKKU AI conference",
-      "location": "WebEx",
-      "time": "16:00",
-      "category": "Study Groups"
-    }
-  ]);
+  const [data, setData] = useState([]);
+
   const updateMyData= (datos) => {
-    const aux = JSON.parse(JSON.stringify(data))
-    aux.push({
-      "title": datos.title,
-      "location": datos.location,
-      "time": datos.time,
-      "category": datos.category
+    let event = {
+      title: datos.title,
+      location: datos.location,
+      time: datos.time,
+      category: datos.category
+    }
+
+    post('http://localhost:3000/api/events/create', event)
+    .then(data => {
+      setData(JSON.parse(data));
     })
-    setData(aux)
+
     console.log("nuevos datos")
     console.log(data)
   }
@@ -62,7 +71,13 @@ export default function Lobby() {
       return d.filter(el => el.category.search(c) !== -1)
     }
   }
-  
+  useEffect(() => {
+    get('http://localhost:3000/api/events/getEvents')
+    .then(data => {
+      setData(JSON.parse(data));
+    })
+  }, []);
+
     return <div className="hero-unit"><head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
