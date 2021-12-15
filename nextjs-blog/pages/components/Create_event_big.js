@@ -2,15 +2,30 @@ import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card"
 import Form from "react-bootstrap/Form";
+
+import "react-big-calendar/lib/css/react-big-calendar.css"
+import "react-datepicker/dist/react-datepicker.css"
+import DatePicker from "react-datepicker"
 import Container from "react-bootstrap/Container";
+import {Col, Nav, Row} from "react-bootstrap";
 function Create_event(props) {
 
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
     const [location, setLocation] = useState("");
     const [category, setCategory] = useState("");
+    const [description, setDescription] = useState("");
+    const [start, setStart] = useState("");
+    const [end, set] = useState("");
+    const [newEvent, setNewEvent] = useState({
+      title: "",
+      start:"",
+      end: ""
+    });
     function handleSubmit(event) {
         const objeto = {title,time,location}
+
+        setAllEvents([...allEvents, newEvent]);
         props.passChildData(event.title);
         event.preventDefault();
         props.updateParent(objeto)
@@ -21,6 +36,7 @@ function Create_event(props) {
     return <div>
       
     <Container>
+      
         <Card >
             <Card.Body>
                 <Card.Title>New event</Card.Title>
@@ -37,7 +53,11 @@ function Create_event(props) {
             onChange={(e) => setTitle(e.target.value)}
           />
         </Form.Group>
-
+          <DatePicker placeholderText="Start Date" style={{marginRight: "10px"}}
+                          selected={newEvent.start} onChange={(start) => setNewEvent({...newEvent, start})} />
+          <DatePicker placeholderText="End Date"
+                          selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent, end})} />
+        
         <Form.Group size="lg" controlId="time">
           <Form.Label>Start time</Form.Label>
           <Form.Control
