@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -16,60 +16,68 @@ import Card from "react-bootstrap/Card";
 
 //hacer dummy_data un state
 
+function get(url) {
+  const requestOptions = {
+    method: 'GET',
+  };
+  return fetch(url, requestOptions)
+  .then(data => {
+    return data.text();
+  });
+}
+
+function post(url, body) {
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(body)
+  };
+  return fetch(url, requestOptions)
+  .then(data => {
+    return data.text();
+  });;
+}
+
 export default function Lobby() {
 
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
-  const [location, setLocation] = useState("Any");
+  const [location, setLocation] = useState("");
   const [category, setCategory] = useState("Any");
   const [childData, setChildData] = useState("");
-  const [data, setData] = useState([
-    {
-      "title": "Korean study group",
-      "location": "Suwon Campus",
-      "time": "12:10",
-      "category": "International students"
-    },
-    {
-      "title": "Free hoodies!",
-      "location": "Seoul Campus",
-      "time": "13:30",
-      "category": "Study Groups"
-    },
-    {
-      "title": "SKKU AI conference",
-      "location": "Online",
-      "time": "16:00",
-      "category": "Study Groups"
-    }
-  ]);
+  const [data, setData] = useState([]);
+
   const updateMyData= (datos) => {
-    const aux = JSON.parse(JSON.stringify(data))
-    aux.push({
-      "title": datos.title,
-      "location": datos.location,
-      "time": datos.time,
-      "category": datos.category
+    let event = {
+      title: datos.title,
+      location: datos.location,
+      time: datos.time,
+      category: datos.category
+    }
+
+    post('http://localhost:3000/api/events/create', event)
+    .then(data => {
+      setData(JSON.parse(data));
     })
-    setData(aux)
+
     console.log("nuevos datos")
     console.log(data)
   }
-  const filterData = (d, c, l) => {
+  const filterData = (d, c) => {
     if (category == "Any"){
-      return filterLocation(d, l);
-    }else{
-      return filterLocation(d, l).filter(el => el.category.search(c) !== -1)
-    }
-  }
-  const filterLocation = (d, l) => {
-    if (l == "Any"){
       return d;
     }else{
-      return d.filter(el => el.location.search(l) !== -1)
+      return d.filter(el => el.category.search(c) !== -1)
     }
   }
-  
+  useEffect(() => {
+    get('http://localhost:3000/api/events/getEvents')
+    .then(data => {
+      setData(JSON.parse(data));
+    })
+  }, []);
+
     return <div className="hero-unit"><head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
@@ -95,20 +103,11 @@ export default function Lobby() {
     <br></br>
     <h4>Filter events by category</h4>
     <select class = "form-select" value={category} onChange = {(e) => setCategory(e.target.value)}>
-      <option value="Any" selected>Any</option>
+      <option value="Any" selected>Select One</option>
       <option value="Study Groups">Study Groups</option>
       <option value="Conferences">Conferences</option>
       <option value="Outdoors activities">Outdoors activities</option>
       <option value="International students">International students</option>
-    </select>
-
-    <h4>Filter events by location</h4>
-    <select class = "form-select" value={location} onChange = {(e) => setLocation(e.target.value)}>
-      <option value="Any" selected>Any</option>
-      <option value="Online">Online</option>
-      <option value="Suwon Campus">Suwon Campus</option>
-      <option value="Seoul Campus">Seoul Campus</option>
-      <option value="Outside of campus">Outside of campus</option>
     </select>
 
     </div>
@@ -128,7 +127,7 @@ export default function Lobby() {
         </div>
         <br></br>
         <Container>
-            <div className="col">{ filterData(data, category, location).map(function(event, index){
+            <div className="col">{ filterData(data, category).map(function(event, index){
               return <Lobby_row key = {index} dataFromParent = {event}></Lobby_row>;
             }) }</div>
         </Container>
