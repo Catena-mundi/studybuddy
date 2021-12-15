@@ -17,6 +17,12 @@ export default function Create() {
     const [location, setLocation] = useState("");
     const [category, setCategory] = useState("Any");
     const [childData, setChildData] = useState("");
+    const [thisEvent, setThisEvent] = useState({
+        "title": "Korean study group",
+        "location": "Suwon library",
+        "time": "12:10",
+        "category": "International students"
+      })
     const [data, setData] = useState([
         {
           "title": "Korean study group",
@@ -72,17 +78,25 @@ export default function Create() {
                         <div class="card-img-overlay">
                             <Container>
 
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">{thisEvent.title}</h5>
                     <Row>
                         <Col>
                             <Card>
                                 <Card.Body>
-                                    <Card.Title>Location</Card.Title>
+                                    <Card.Title>{thisEvent.location}</Card.Title>
                                     <Card.Text>
                                         Event description
                                     </Card.Text>
+                                    <Card.Text>
+                                        {thisEvent.time}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        {thisEvent.category}
+                                    </Card.Text>
                                 </Card.Body>
                             </Card>
+                            <br></br>
+                            <Button>Add to calendar</Button>
                         </Col>
                         <Col>
                             <Card>
