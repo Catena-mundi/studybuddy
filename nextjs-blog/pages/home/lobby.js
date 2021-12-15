@@ -53,7 +53,10 @@ export default function Lobby() {
       title: datos.title,
       location: datos.location,
       time: datos.time,
-      category: datos.category
+      category: datos.category,
+      allDay: false,
+      start: new Date(),
+      end: new Date()
     }
 
     post('http://localhost:3000/api/events/create', event)

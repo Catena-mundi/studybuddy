@@ -5,7 +5,7 @@ import startOfWeek from "date-fns/startOfWeek"
 import getDay from "date-fns/getDate"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import "react-datepicker/dist/react-datepicker.css"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import DatePicker from "react-datepicker"
 import Head from 'next/head'
 import Link from 'next/link'
@@ -28,26 +28,28 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
-// dummy data
-// array of objects
-const events = [
-    {
-        title: "Big Meeting",
-        allDay: true,
-        start: new Date(2021, 12, 3),
-        end: new Date(2021, 12, 3),
-    },
-    {
-        title: "Vacation",
-        start: new Date(2021, 11, 7),
-        end: new Date(2021, 11, 10),
-    },
-    {
-        title: "Conference",
-        start: new Date(2021, 11, 20),
-        end: new Date(2021, 11, 23),
-    },
-];
+function get(url) {
+    const requestOptions = {
+        method: 'GET',
+    };
+    return fetch(url, requestOptions)
+    .then(data => {
+        return data.text();
+    });
+}
+  
+function post(url, body) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(body)
+    };
+    return fetch(url, requestOptions)
+    .then(data => {
+        return data.text();
+    });;
+}
 
 export default function FirstPost() {
     const [newEvent, setNewEvent] = useState({
@@ -55,12 +57,35 @@ export default function FirstPost() {
         start:"",
         end: ""
     });
-    const [allEvents, setAllEvents] = useState(events);
+    const [allEvents, setAllEvents] = useState([]);
+
+    useEffect(() => {
+        get('http://localhost:3000/api/events/getEvents')
+        .then(data => {
+            setAllEvents(JSON.parse(data).map(e => {
+                e.start = new Date(e.start);
+                e.end = new Date(e.end);
+                return e;
+            }));
+        })
+    }, []);
 
     function handleAddEvent() {
-
-        setAllEvents([...allEvents, newEvent]);
+        let event = {
+            title: newEvent.title,
+            location: '',
+            time: '',
+            category: 'Any',
+            allDay: false,
+            start: newEvent.start,
+            end: newEvent.end
+        }
+        post('http://localhost:3000/api/events/create', event)
+        .then(data => {
+            setAllEvents(JSON.parse(data));
+        })
     }
+
 
     return <div>
         <Navbar bg="primary" variant="dark">
