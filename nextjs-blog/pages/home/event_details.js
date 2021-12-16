@@ -19,12 +19,12 @@ export default function Create() {
     const [childData, setChildData] = useState("");
     const [data, setData] = useState([]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         get('http://localhost:3000/api/events/getEvents')
         .then(data => {
           setData(JSON.parse(data));
         })
-    }, []);
+    }, []);*/
 
     return <div className="hero-unit"><head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>

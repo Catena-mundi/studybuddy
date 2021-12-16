@@ -10,6 +10,7 @@ import DatePicker from "react-datepicker"
 import Head from 'next/head'
 import Link from 'next/link'
 import Navbar from 'react-bootstrap/Navbar'
+import Nav_bar from '../components/nav_bar'
 import Container from "react-bootstrap/Container";
 import {Col, Nav, Row} from "react-bootstrap";
 
@@ -78,7 +79,8 @@ export default function FirstPost() {
             category: 'Any',
             allDay: false,
             start: newEvent.start,
-            end: newEvent.end
+            end: newEvent.end,
+            joined: true, 
         }
         post('http://localhost:3000/api/events/create', event)
         .then(data => {
@@ -88,15 +90,7 @@ export default function FirstPost() {
 
 
     return <div>
-        <Navbar bg="primary" variant="dark">
-            <Container>
-                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="/home/homepage">Home</Nav.Link>
-                    <Nav.Link href="/home/lobby">Lobby</Nav.Link>
-                </Nav>
-            </Container>
-        </Navbar>
+        <Nav_bar></Nav_bar>
         <Container>
         <h1 class = "mt-4">Calendar</h1>
         <Card class="m4">
@@ -114,7 +108,7 @@ export default function FirstPost() {
         </Card>
 
         <Calendar localizer={localizer}
-                  events={allEvents}
+                  events={allEvents.filter(event => event?.joined === true)}
                   startAccessor="start"
                   endAccessor="end"
                   style={{ height: 500, margin: "50px" }} />

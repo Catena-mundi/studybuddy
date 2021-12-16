@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container"
 import Link from 'next/link'
 import GoogleLogin from 'react-google-login';
 import Navbar from 'react-bootstrap/Navbar'
+import Nav_bar from '../components/nav_bar'
 import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import './login.css'
@@ -43,15 +44,7 @@ export default function Login() {
       <title>Login</title>
       </head>
     <main>
-    <Navbar bg="primary" variant="dark">
-            <Container>
-                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="/home/homepage">Home</Nav.Link>
-                    <Nav.Link href="/home/lobby">Lobby</Nav.Link>
-                </Nav>
-            </Container>
-        </Navbar>
+    <Nav_bar></Nav_bar>
       <Container>
 
     <h1 className="title mt-3">
