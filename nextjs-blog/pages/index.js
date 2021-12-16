@@ -6,12 +6,9 @@ import Container from "react-bootstrap/Container"
 import Link from 'next/link'
 import GoogleLogin from 'react-google-login';
 import Navbar from 'react-bootstrap/Navbar'
-import Nav_bar from '../components/nav_bar'
+import Nav_bar from './components/nav_bar'
 import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import './login.css'
-//import "./Login.css"
-// client secret
 
 import LoginButton from "./home/loginButton";
 import LogoutButton from "./home/logoutButton";
