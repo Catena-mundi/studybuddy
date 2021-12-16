@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import Head from 'next/head'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container"
-import Link from 'next/link'
 import GoogleLogin from 'react-google-login';
 import Navbar from 'react-bootstrap/Navbar'
 import {Col, Nav, Row} from "react-bootstrap";
@@ -47,8 +45,6 @@ export default function Login() {
             <Container>
                 <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/home/homepage">Home</Nav.Link>
-                    <Nav.Link href="/home/lobby">Lobby</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
@@ -90,14 +86,7 @@ export default function Login() {
   />
       </div>
       <div class = "col"></div>
-      
-  <br></br>
-        
-    <Link href="/">
-          <a>Back to index</a>
-    </Link>
     </Container>
-    <LogoutButton/>
     </main>
     
 

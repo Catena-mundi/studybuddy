@@ -5,7 +5,11 @@ import Container from "react-bootstrap/Container";
 import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
-
+import LogoutButton from "./logoutButton";
+import React from "react";
+import {GoogleLogout} from "react-google-login";
+import { useState } from 'react';
+import axios from 'axios';
 /*
 * have to make a function where it makes all the cards corresponding to all the services that we have*/
 
@@ -21,7 +25,7 @@ function HomeCard({ href, title, text, img }) {
             </Card.Header>
             <Card.Img className="w-50 mx-auto d-block m-3" variant="top" src={imgURL} />
         </Card>
-    );
+    )
 }
 
 
@@ -44,15 +48,58 @@ const homeCards = [
         href: 'calendar',
         img: "calendar.png"
     },
-    {
-        title: 'Lobby',
-        text: 'Find current or future events according to your interests',
-        href: 'lobby',
-        img: "event.png"
-    },
 ]
 
+const projectID = '19b7fa1f-78b6-4391-8b4e-7ad364e35791'
+
+function Modal () {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const authObject = { 'Project-ID': projectID, 'User-Name': username, 'User-Secret': password }
+
+        try {
+            await axios.get('https://api.chatengine.io/chats', { headers: authObject })
+
+            this.setItem('username', username)
+            this.setItem('password', password)
+
+            window.location.href = "http://localhost:3000/home/chat"
+            setError('')
+        } catch (err) {
+            setError('Oops, incorrect credentials.')
+        }
+    }
+
+    return (
+        <div className="wrapper">
+            <div className="form">
+                <form onSubmit={handleSubmit}>
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" placeholder="Username" required />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" placeholder="Password" required />
+                    <div align="center">
+                        <button type="submit" className="button">
+                            <span>Start chatting</span>
+                        </button>
+                    </div>
+                </form>
+                <h1>{error}</h1>
+            </div>
+        </div>
+
+    )
+}
+
 export default function FirstPost() {
+    const responseGoogle = (response) => {
+        console.log(response)
+        window.location.href = "http://localhost:3000/"
+    }
+
     return <div><Head><title>Homepage</title></Head>
         <Navbar bg="primary" variant="dark">
             <Container>
@@ -60,6 +107,13 @@ export default function FirstPost() {
                 <Nav className="me-auto">
                     <Nav.Link href="/home/homepage">Home</Nav.Link>
                     <Nav.Link href="/home/lobby">Lobby</Nav.Link>
+                    <GoogleLogout
+                        clientId="1023237436999-c8vqvl58fregldvfm0m1icosgsld0hth.apps.googleusercontent.com"
+                        buttonText="Logout"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                    >
+                    </GoogleLogout>
                 </Nav>
             </Container>
         </Navbar>
@@ -78,6 +132,15 @@ export default function FirstPost() {
                          />
                     </Col>
                 ))}
+                <Col md={6} key={4}>
+                    <Card className="m-3">
+                        <Card.Header style={{ height: '5rem' }}>
+                            <Card.Title> Chat </Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">Chat with your fellow students by entering the user name and password that was provided to you</Card.Subtitle>
+                        </Card.Header>
+                        <Modal/>
+                    </Card>
+                </Col>
             </Row>
             </Container>
         </main>
@@ -113,7 +176,6 @@ export default function FirstPost() {
       .description {
         text-align: center;
       }
-
     `}</style>
     </div>
   }
