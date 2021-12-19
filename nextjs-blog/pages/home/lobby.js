@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head'
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Link from 'next/link'
 import Lobby_row from '../components/Lobby_row'
-import Create_event from '../components/Create_event'
-import Navbar from 'react-bootstrap/Navbar'
 import Nav_bar from '../components/nav_bar'
 import Container from "react-bootstrap/Container";
-import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from "react-bootstrap/Card";
 
 function get(url) {
   const requestOptions = {

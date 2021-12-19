@@ -7,7 +7,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 import "react-datepicker/dist/react-datepicker.css"
 import DatePicker from "react-datepicker"
 import Container from "react-bootstrap/Container";
-import {Col, Nav, Row} from "react-bootstrap";
 function Create_event(props) {
 
     const [title, setTitle] = useState("");

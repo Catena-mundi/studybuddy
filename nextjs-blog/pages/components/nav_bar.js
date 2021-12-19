@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from "react-bootstrap/Container";
-import {Col, Nav, Row} from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import {GoogleLogout} from "react-google-login";
 
 const responseGoogle = (response) => {
