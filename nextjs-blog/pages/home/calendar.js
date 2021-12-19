@@ -17,6 +17,8 @@ import Button from "react-bootstrap/Button";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
 
+// used https://jquense.github.io/react-big-calendar/examples/index.html as template
+
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
 };
