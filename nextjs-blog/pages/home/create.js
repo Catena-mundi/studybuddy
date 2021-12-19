@@ -10,7 +10,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import Container from "react-bootstrap/Container";
 import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from "react-bootstrap/Card";
 
 function get(url) {
     const requestOptions = {

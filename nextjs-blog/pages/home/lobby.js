@@ -12,28 +12,6 @@ import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
 
-//import './login.css'
-//import "./Login.css"
-
-//hacer dummy_data un state
-//<Create_event passChildData={setChildData} updateParent={updateMyData}></Create_event>
-
-/*
-<div className = "row">
-            <div className = "col-5">
-                <div className="input-group rounded">
-                    <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <span className="input-group-text border-0" id="search-addon">
-                    <i className="fas fa-search"></i>
-                    </span>
-                </div>
-            </div>
-            <div className = "col">
-                <Button>New event</Button>
-            </div>
-        </div>
-*/
-
 function get(url) {
   const requestOptions = {
     method: 'GET',
