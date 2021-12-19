@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Navbar from 'react-bootstrap/Navbar'
+
+import Nav_bar from '../components/nav_bar'
 import Container from "react-bootstrap/Container";
 import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -101,22 +103,7 @@ export default function FirstPost() {
     }
 
     return <div><Head><title>Homepage</title></Head>
-        <Navbar bg="primary" variant="dark">
-            <Container>
-                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="/home/homepage">Home</Nav.Link>
-                    <Nav.Link href="/home/lobby">Lobby</Nav.Link>
-                    <GoogleLogout
-                        clientId="1023237436999-c8vqvl58fregldvfm0m1icosgsld0hth.apps.googleusercontent.com"
-                        buttonText="Logout"
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
-                    >
-                    </GoogleLogout>
-                </Nav>
-            </Container>
-        </Navbar>
+        <Nav_bar></Nav_bar>
         <main>
             <h1 className="title">Homepage</h1>
             <br></br>

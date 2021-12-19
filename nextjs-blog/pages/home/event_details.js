@@ -17,44 +17,14 @@ export default function Create() {
     const [location, setLocation] = useState("");
     const [category, setCategory] = useState("Any");
     const [childData, setChildData] = useState("");
-    const [thisEvent, setThisEvent] = useState({
-        "title": "Korean study group",
-        "location": "Suwon library",
-        "time": "12:10",
-        "category": "International students"
-      })
-    const [data, setData] = useState([
-        {
-          "title": "Korean study group",
-          "location": "Suwon library",
-          "time": "12:10",
-          "category": "International students"
-        },
-        {
-          "title": "Free hoodies!",
-          "location": "Seoul campus",
-          "time": "13:30",
-          "category": "Study Groups"
-        },
-        {
-          "title": "SKKU AI conference",
-          "location": "WebEx",
-          "time": "16:00",
-          "category": "Study Groups"
-        }
-      ]);
-      const updateMyData= (datos) => {
-        const aux = JSON.parse(JSON.stringify(data))
-        aux.push({
-          "title": datos.title,
-          "location": datos.location,
-          "time": datos.time,
-          "category": datos.category
+    const [data, setData] = useState([]);
+
+    /*useEffect(() => {
+        get('http://localhost:3000/api/events/getEvents')
+        .then(data => {
+          setData(JSON.parse(data));
         })
-        setData(aux)
-        console.log("nuevos datos")
-        console.log(data)
-      }
+    }, []);*/
 
     return <div className="hero-unit"><head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>

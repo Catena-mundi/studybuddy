@@ -16,16 +16,10 @@ function Create_event(props) {
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const [start, setStart] = useState("");
-    const [end, set] = useState("");
-    const [newEvent, setNewEvent] = useState({
-      title: "",
-      start:"",
-      end: ""
-    });
-    function handleSubmit(event) {
-        const objeto = {title,time,location}
+    const [end, setEnd] = useState("");
+    async function handleSubmit(event) {
+        const objeto = {title,time,location, start, end, description, category}
 
-        setAllEvents([...allEvents, newEvent]);
         props.passChildData(event.title);
         event.preventDefault();
         props.updateParent(objeto)
@@ -50,7 +44,8 @@ function Create_event(props) {
             autoFocus
             type="title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => 
+            setTitle(e.target.value)}
           />
           </Form.Group>
         <Form.Group size="lg" controlId="description">
@@ -63,9 +58,9 @@ function Create_event(props) {
           />
         </Form.Group>
           <DatePicker placeholderText="Start Date" style={{marginRight: "10px"}}
-                          selected={newEvent.start} onChange={(start) => setNewEvent({...newEvent, start})} />
+                          selected={start} onChange={(start) => setStart(start)} />
           <DatePicker placeholderText="End Date"
-                          selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent, end})} />
+                          selected={end} onChange={(end) => setEnd(end)} />
         
         <Form.Group size="lg" controlId="time">
           <Form.Label>Start time</Form.Label>
@@ -89,11 +84,12 @@ function Create_event(props) {
 
         <Form.Group size="lg" controlId="location">
           <Form.Label>Event location</Form.Label>
-          <Form.Control
-            type="location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
+          <select class = "form-select" value={location} onChange = {(e) => setLocation(e.target.value)}>
+            <option value="Online" selected>Online</option>
+            <option value="Seoul Campus">Seoul Campus</option>
+            <option value="Suwon Campus">Suwon Campus</option>
+            <option value="Outside of Campus">Outside of Campus</option>
+          </select>
         </Form.Group>
 
         <Button block size="lg" type="submit">

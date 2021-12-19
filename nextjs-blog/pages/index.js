@@ -4,11 +4,9 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container"
 import GoogleLogin from 'react-google-login';
 import Navbar from 'react-bootstrap/Navbar'
+import Nav_bar from './components/nav_bar'
 import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import './login.css'
-//import "./Login.css"
-// client secret
 
 import LoginButton from "./home/loginButton";
 import LogoutButton from "./home/logoutButton";
@@ -41,13 +39,7 @@ export default function Login() {
       <title>Login</title>
       </head>
     <main>
-    <Navbar bg="primary" variant="dark">
-            <Container>
-                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
-                <Nav className="me-auto">
-                </Nav>
-            </Container>
-        </Navbar>
+    <Nav_bar></Nav_bar>
       <Container>
 
     <h1 className="title mt-3">
