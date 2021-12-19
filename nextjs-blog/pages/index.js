@@ -4,8 +4,17 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container"
 import GoogleLogin from 'react-google-login';
 import Navbar from 'react-bootstrap/Navbar'
-import { Nav } from "react-bootstrap";
+import Nav_bar from './components/nav_bar'
+import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import LoginButton from "./home/loginButton";
+import LogoutButton from "./home/logoutButton";
+/*
+export default function FirstPost() {
+    return <div className = "login">
+    <h1 className="title">
+*/
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -30,13 +39,7 @@ export default function Login() {
       <title>Login</title>
       </head>
     <main>
-    <Navbar bg="primary" variant="dark">
-            <Container>
-                <Navbar.Brand href="#home">StudyBuddy</Navbar.Brand>
-                <Nav className="me-auto">
-                </Nav>
-            </Container>
-        </Navbar>
+    <Nav_bar></Nav_bar>
       <Container>
 
     <h1 className="title mt-3">
