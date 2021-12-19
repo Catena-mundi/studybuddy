@@ -11,11 +11,6 @@ import {Col, Nav, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
 
-//import './login.css'
-//import "./Login.css"
-
-//hacer dummy_data un state
-
 function get(url) {
   const requestOptions = {
     method: 'GET',

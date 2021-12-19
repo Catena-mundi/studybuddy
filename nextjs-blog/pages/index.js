@@ -4,19 +4,8 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container"
 import GoogleLogin from 'react-google-login';
 import Navbar from 'react-bootstrap/Navbar'
-import {Col, Nav, Row} from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import './login.css'
-//import "./Login.css"
-// client secret
-
-import LoginButton from "./home/loginButton";
-import LogoutButton from "./home/logoutButton";
-/*
-export default function FirstPost() {
-    return <div className = "login">
-    <h1 className="title">
-*/
 
 export default function Login() {
   const [email, setEmail] = useState("");

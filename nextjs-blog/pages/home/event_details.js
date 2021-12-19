@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import Head from 'next/head'
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Link from 'next/link'
-import Lobby_row from '../components/Lobby_row'
-import Create_event from '../components/Create_event_big'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from "react-bootstrap/Container";
 import {Col, Nav, Row} from "react-bootstrap";
